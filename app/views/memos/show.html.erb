@@ -1,7 +1,10 @@
 <h1>投稿詳細</h1>
 <h2><%= @memo.title %></h2>
 <h3><%= @memo.content %></h3>
-<%= @memo.image %>
+<% if @memo.image? %>
+  <p><%= image_tag @memo.image.url %></p>
+<% end %>
+
 
 <%= link_to "編集", edit_memo_path(@memo) %>
 <%= link_to "削除", memo_path(@memo), method: :delete, data: {confirm: "削除しますか？" } %>
