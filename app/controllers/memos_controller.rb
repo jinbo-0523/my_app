@@ -1,14 +1,15 @@
 class MemosController < ApplicationController
   def index
-    # @memos = Memo.all
+    @memos = Memo.all
   end
 
   def new
-    memo = Memo.new
+    @memo = Memo.new
   end
 
   def create
     Memo.create!(memo_params)
+    redirect_to root_path
   end
 
   def show
@@ -30,7 +31,7 @@ class MemosController < ApplicationController
   end
 
   private
-  def mome_params
+  def memo_params
     params.require(:memo).permit(:title, :content, :image)
   end
 
