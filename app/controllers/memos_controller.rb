@@ -25,7 +25,7 @@ class MemosController < ApplicationController
   end
 
   def destroy
-    memo = Memo.find(memo_params)
+    memo = Memo.find(params[:id])
     memo.destroy!
   end
 

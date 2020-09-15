@@ -1,2 +1,7 @@
-<h1>Memos#new</h1>
-<p>Find me in app/views/memos/new.html.erb</p>
+<h1>投稿画面</h1>
+　<%= form_with model: memo, url: "memo_index", method: :post, local true do |form| %>
+    <p>タイトル <%= form.text_field :title %></p>
+    <p>内容  <%= form.text_area :content, size: "45*30" %></p>
+    <p>画像 <%= form.file_field :image %></p>
+    <%= form.submit "投稿" %>
+  <% end %>
