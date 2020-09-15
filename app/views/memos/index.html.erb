@@ -1,0 +1,9 @@
+<h1>投稿一覧</h1>
+<% @memos.each do |memo| %>
+  <p> 
+    <%= memo.title %>
+    <%= link_to "詳細", memo_path(memo) %>
+    <%= link_to "編集", edit_memo_path(memo) %>
+    <%= link_to "削除", memo_path(memo), method: :delete, data: {confirm: "削除しますか？" } %>
+  </p>
+<% end %>
