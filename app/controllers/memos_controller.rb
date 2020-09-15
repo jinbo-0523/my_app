@@ -23,11 +23,13 @@ class MemosController < ApplicationController
   def update
     memo = Memo.find(params[:id])
     memo.update!(memo_params)
+    redirect_to memo_path(memo)
   end
 
   def destroy
     memo = Memo.find(params[:id])
     memo.destroy!
+    redirect_to memos_path
   end
 
   private
