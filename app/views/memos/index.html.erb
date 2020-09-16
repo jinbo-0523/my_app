@@ -1,7 +1,7 @@
 <h1>投稿一覧</h1>
 <% @memos.each do |memo| %>
   <p> 
-    <%= memo%>
+    <%= memo.user.name %>
     タイトル<%= memo.title %>
     <%= link_to "詳細", memo_path(memo) %>
     <% if user_signed_in? %>

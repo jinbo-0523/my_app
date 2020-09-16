@@ -5,7 +5,7 @@ class MemosController < ApplicationController
 
 
   def index
-    @memos = Memo.all
+    @memos = Memo.includes(:user).order(:id)
   end
 
   def new
@@ -13,7 +13,7 @@ class MemosController < ApplicationController
   end
 
   def create
-    Memo.create!(memo_params)
+    current_user.memos.create!(memo_params)
     redirect_to root_path
   end
 
@@ -39,7 +39,7 @@ class MemosController < ApplicationController
 
   private
   def memo_params
-    params.require(:memo).permit(:title, :content, :image, :users)
+    params.require(:memo).permit(:title, :content, :image)
   end
 
 end
