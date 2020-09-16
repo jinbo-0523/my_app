@@ -1,4 +1,9 @@
 class MemosController < ApplicationController
+
+  # index show以外はログイン画面のページをスキップできる
+  skip_before_action :authenticate_user!, only: %i[index show]
+
+
   def index
     @memos = Memo.all
   end
@@ -34,7 +39,7 @@ class MemosController < ApplicationController
 
   private
   def memo_params
-    params.require(:memo).permit(:title, :content, :image)
+    params.require(:memo).permit(:title, :content, :image, :users)
   end
 
 end
