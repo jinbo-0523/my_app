@@ -1,6 +1,13 @@
 ---
 ja:
   activerecord:
+    models:
+      memo: メモ
+    attributes:
+      memo:
+        title: タイトル
+        content: 内容
+        image: 画像
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
