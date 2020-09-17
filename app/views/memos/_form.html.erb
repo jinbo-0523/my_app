@@ -1,6 +1,20 @@
 <%= form_with model: @memo, local: true do |form| %>
-  <p>タイトル <%= form.text_field :title %></p>
-  <p>内容  <%= form.text_area :content, size: "45*30" %></p>
-  <p>画像 <%= form.file_field :image %></p>
-  <%= form.submit button_value %>
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :content %>
+    <%= form.text_area :content, size: "45*30" %>
+  </div>
+
+  <div>
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+    <%= form.submit button_value %>
 <% end %>
+
+
