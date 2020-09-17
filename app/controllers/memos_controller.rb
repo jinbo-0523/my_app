@@ -1,6 +1,12 @@
 class MemosController < ApplicationController
+
+  # index show以外はログイン画面のページをスキップできる
+  skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :correct_user, only: %i[edit update destroy]
+
+
   def index
-    @memos = Memo.all
+    @memos = Memo.includes(:user).order(:id)
   end
 
   def new
@@ -8,7 +14,7 @@ class MemosController < ApplicationController
   end
 
   def create
-    Memo.create!(memo_params)
+    current_user.memos.create!(memo_params)
     redirect_to root_path
   end
 
@@ -17,24 +23,26 @@ class MemosController < ApplicationController
   end
 
   def edit
-    @memo = Memo.find(params[:id])
   end
 
   def update
-    memo = Memo.find(params[:id])
-    memo.update!(memo_params)
-    redirect_to memo_path(memo)
+    @memo.update!(memo_params)
+    redirect_to memo_path(@memo)
   end
 
   def destroy
-    memo = Memo.find(params[:id])
-    memo.destroy!
+    @memo.destroy!
     redirect_to memos_path
   end
 
   private
   def memo_params
     params.require(:memo).permit(:title, :content, :image)
+  end
+
+  def correct_user
+    @memo = current_user.memos.find_by(id: params[:id])
+    redirect_to root_path if @memo.nil?
   end
 
 end
