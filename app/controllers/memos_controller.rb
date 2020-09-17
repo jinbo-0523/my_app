@@ -15,7 +15,7 @@ class MemosController < ApplicationController
 
   def create
     current_user.memos.create!(memo_params)
-    redirect_to root_path
+    redirect_to root_path, notice: "投稿しました"
   end
 
   def show
@@ -27,12 +27,12 @@ class MemosController < ApplicationController
 
   def update
     @memo.update!(memo_params)
-    redirect_to memo_path(@memo)
+    redirect_to memo_path(@memo), notice: "更新しました"
   end
 
   def destroy
     @memo.destroy!
-    redirect_to memos_path
+    redirect_to memos_path, alert: "削除しました"
   end
 
   private
