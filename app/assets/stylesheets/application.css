@@ -13,14 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
- 
- div.field_with_errors {
-  display: contents;
-  /* ↑div要素が読まれなくなる。だからスタイルを崩さない */
-
-  input, textarea {
-    border: 2px solid red;
-  }
-
-}

@@ -1,2 +1,7 @@
 <h1>投稿編集</h1>
-<%= render "form", button_value: "更新" %>
+<%= form_with model: @memo, local: true do |form| %>
+  <p>タイトル <%= form.text_field :title %></p>
+  <p>内容  <%= form.text_area :content, size: "45*30" %></p>
+  <p>画像 <%= form.file_field :image %></p>
+  <%= form.submit "更新" %>
+<% end %>
