@@ -14,8 +14,14 @@ class MemosController < ApplicationController
   end
 
   def create
-    current_user.memos.create!(memo_params)
-    redirect_to root_path
+ # DayOneの9/17にcreateじゃなくてsaveの理由を記載
+    @memo = current_user.memos.new(memo_params)
+    if @memo.save
+    redirect_to root_path, notice: "投稿しました"
+    else
+    flash.now[:alert] = "投稿に失敗しました"
+    render :new
+    end
   end
 
   def show
@@ -26,13 +32,17 @@ class MemosController < ApplicationController
   end
 
   def update
-    @memo.update!(memo_params)
-    redirect_to memo_path(@memo)
+    if @memo.update(memo_params)
+      redirect_to memo_path(@memo), notice: "更新しました"
+    else
+      flash.now[:alert] = "投稿に失敗しました"
+      render :edit
+    end
   end
 
   def destroy
     @memo.destroy!
-    redirect_to memos_path
+    redirect_to memos_path, alert: "削除しました"
   end
 
   private
