@@ -1,0 +1,9 @@
+<% if @memo.errors.any? %>
+  <div>
+    <ul>
+      <% @memo.errors.full_messages.each do |msg| %>
+        <li><span style="color: red;"><%= msg %></span></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
