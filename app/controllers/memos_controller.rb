@@ -27,7 +27,7 @@ class MemosController < ApplicationController
 
   def update
     @memo.update!(memo_params)
-    redirect_to memo_path(memo)
+    redirect_to memo_path(@memo)
   end
 
   def destroy
