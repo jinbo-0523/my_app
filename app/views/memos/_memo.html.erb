@@ -1,8 +1,10 @@
-  <p> 
-    <%= memo.user.name %>
-    タイトル<%= memo.title %>
-    ユーザーネーム
-
+  <p>
+  投稿者：<%= memo.user.name %>
+  タイトル：<%= memo.title %>
+  <% if memo.image? %>
+  <%= image_tag memo.image.thumb.url %>
+  <% end %>
+  </p>
     <%= link_to "詳細", memo_path(memo) %>  
     <% if user_signed_in? && current_user.id == memo.user.id %>
       <%= link_to "編集", edit_memo_path(memo) %>

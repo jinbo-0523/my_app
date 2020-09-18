@@ -1,13 +1,14 @@
 <h1>投稿詳細</h1>
-<h2><%= @memo.title %></h2>
-<h3><%= @memo.content %></h3>
+<div class = memo_title><%= @memo.title %></div>
+<div class = memo_content><%= simple_format(h @memo.content) %></div>
+
+<%#= simple_format(h @post.content) %>
+
 <% if @memo.image? %>
-  <p><%= image_tag @memo.image.url %></p>
+  <p><%= image_tag @memo.image.url, :size => '600*600' %></p>
 <% end %>
 
-<% if user_signed_in?%>
-  <% if current_user.id == @memo.user.id %>
-    <%= link_to "編集", edit_memo_path(@memo) %>
-    <%= link_to "削除", memo_path(@memo), method: :delete, data: {confirm: "削除しますか？" } %>
-  <% end %>
+<% if user_signed_in? && current_user.id == @memo.user.id %>
+  <%= link_to "編集", edit_memo_path(@memo) %>
+  <%= link_to "削除", memo_path(@memo), method: :delete, data: {confirm: "削除しますか？" } %>
 <% end %>

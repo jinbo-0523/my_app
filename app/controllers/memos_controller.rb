@@ -4,7 +4,6 @@ class MemosController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
   before_action :correct_user, only: %i[edit update destroy]
 
-
   def index
     @memos = Memo.includes(:user).order(:id)
   end
@@ -14,13 +13,13 @@ class MemosController < ApplicationController
   end
 
   def create
- # DayOneの9/17にcreateじゃなくてsaveの理由を記載
+    # DayOneの9/17にcreateじゃなくてsaveの理由を記載
     @memo = current_user.memos.new(memo_params)
     if @memo.save
-    redirect_to root_path, notice: "投稿しました"
+      redirect_to root_path, notice: "投稿しました"
     else
-    flash.now[:alert] = "投稿に失敗しました"
-    render :new
+      flash.now[:alert] = "投稿に失敗しました"
+      render :new
     end
   end
 
