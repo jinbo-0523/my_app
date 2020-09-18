@@ -4,7 +4,6 @@ class MemosController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
   before_action :correct_user, only: %i[edit update destroy]
 
-
   def index
     @memos = Memo.includes(:user).order(:id)
   end
